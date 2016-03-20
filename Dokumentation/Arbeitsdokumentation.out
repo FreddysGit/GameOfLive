@@ -1,6 +1,8 @@
-\BOOKMARK [1][-]{section.1}{Ziel des Projektes}{}% 1
-\BOOKMARK [1][-]{section.2}{Durchf\374hrung}{}% 2
-\BOOKMARK [2][-]{subsection.2.1}{prepGoL}{section.2}% 3
-\BOOKMARK [2][-]{subsection.2.2}{GoLdataimport}{section.2}% 4
-\BOOKMARK [2][-]{subsection.2.3}{GoLStep}{section.2}% 5
-\BOOKMARK [2][-]{subsection.2.4}{GoLplot}{section.2}% 6
+\BOOKMARK [1][-]{section.1}{Einleitung}{}% 1
+\BOOKMARK [1][-]{section.2}{Ziel des Projektes}{}% 2
+\BOOKMARK [1][-]{section.3}{Durchf\374hrung}{}% 3
+\BOOKMARK [2][-]{subsection.3.1}{prepGoL}{section.3}% 4
+\BOOKMARK [2][-]{subsection.3.2}{GoLdataimport}{section.3}% 5
+\BOOKMARK [2][-]{subsection.3.3}{GoLStep}{section.3}% 6
+\BOOKMARK [2][-]{subsection.3.4}{GoLplot}{section.3}% 7
+\BOOKMARK [2][-]{subsection.3.5}{GameOfLife}{section.3}% 8
