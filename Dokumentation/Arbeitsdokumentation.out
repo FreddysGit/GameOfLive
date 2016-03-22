@@ -1,8 +1,12 @@
 \BOOKMARK [1][-]{section.1}{Einleitung}{}% 1
 \BOOKMARK [1][-]{section.2}{Ziel des Projektes}{}% 2
-\BOOKMARK [1][-]{section.3}{Durchf\374hrung}{}% 3
-\BOOKMARK [2][-]{subsection.3.1}{prepGoL}{section.3}% 4
-\BOOKMARK [2][-]{subsection.3.2}{GoLdataimport}{section.3}% 5
-\BOOKMARK [2][-]{subsection.3.3}{GoLStep}{section.3}% 6
-\BOOKMARK [2][-]{subsection.3.4}{GoLplot}{section.3}% 7
-\BOOKMARK [2][-]{subsection.3.5}{GameOfLife}{section.3}% 8
+\BOOKMARK [1][-]{section.3}{Vor\374berlegungen}{}% 3
+\BOOKMARK [1][-]{section.4}{Durchf\374hrung}{}% 4
+\BOOKMARK [2][-]{subsection.4.1}{prepGoL}{section.4}% 5
+\BOOKMARK [2][-]{subsection.4.2}{GoLdataimport}{section.4}% 6
+\BOOKMARK [2][-]{subsection.4.3}{GoLStep}{section.4}% 7
+\BOOKMARK [2][-]{subsection.4.4}{GoLplot}{section.4}% 8
+\BOOKMARK [2][-]{subsection.4.5}{GameOfLife}{section.4}% 9
+\BOOKMARK [1][-]{section.5}{Sonderfunktionen}{}% 10
+\BOOKMARK [2][-]{subsection.5.1}{Farbwahl}{section.5}% 11
+\BOOKMARK [2][-]{subsection.5.2}{Manuelle Steuerung}{section.5}% 12
