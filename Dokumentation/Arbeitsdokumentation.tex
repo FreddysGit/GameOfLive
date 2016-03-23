@@ -17,7 +17,7 @@
 \section{Einleitung}
 Das Game of Life wurde 1970 vom Mathematiker J.H. Conway entwickelt. Es ist ein zellulärer Automat, welcher nach deterministischen Regeln funktioniert.
 
-Sowohl räumlich, als auch zeitlich ist dieser diskret aufgebaut. Es wird ein zweidimensionales Feld betrachtet, welches lebende oder auch einfach besetzte und tote oder auch leere Zellen enthält. In diskreten Zeitschritten wird anhand der Nachbarzellen und des Zustandes der Zelle selbst bestimmt, ob sie auch im nächsten Zeitschritt lebend bleibt oder geboren wird.
+Sowohl räumlich, als auch zeitlich ist dieser diskret aufgebaut. Es wird ein zweidimensionales Feld betrachtet, welches lebende oder auch einfach besetzte und tote oder auch leere Zellen enthält. In diskreten Zeitschritten wird anhand der Nachbarzellen und des Zustandes der Zelle selbst bestimmt, ob sie auch im nächsten Zeitschritt lebend bleibt oder neu geboren wird.
 
 Die Regel, die dies bestimmt, lautet im Standartbeispiel B3/S23, das bedeutet, eine Zelle wird bei 3 lebenden Nachbarzellen geboren ('born'). Bereits lebende Zellen überleben ('survive') bei 2 oder 3 lebenden Nachbarzellen.
 \section{Ziel des Projektes}
@@ -26,7 +26,7 @@ Dies bedeutet, dass an Hand einer vom Benutzer vorgegebenen Regel die Entwicklun
 \section{Vorüberlegungen}
 Zunächst habe ich mir überlegt, wie ich mein Programm aufbauen will. Eine Strukturierung in verschiedene Funktionen, welche ineinander eingebunden werden, erschien mir am sinnvollsten. Die Vorgabe der Parameter sollte über Text-Dateien geregelt werden, wofür ich ebenfalls eine vorbereitende Funktion erstellen wollte.
 
-Nun blieb nur noch zu klären, wie ich das Felde mit den Zellen darstellen sollte. Es bestand die Möglichkeit, nur die lebenden Zellen als Koordinatenpaare zu speichern, wobei meiner Meinung nach die Abfrage der Nachbarn eher kompliziert gewesen wäre. So entschied ich mich dafür, alle Zellen als Matrix zu speichern, mit 1en für lebende und 0en für tote Zellen. Bei dieser Variante sind die vorhanden Funktionen von Numpy sehr hilfreich.
+Nun blieb nur noch zu klären, wie ich das Feld mit den Zellen darstellen sollte. Es bestand die Möglichkeit, nur die lebenden Zellen als Koordinatenpaare zu speichern, wobei meiner Meinung nach die Abfrage der Nachbarn eher kompliziert gewesen wäre. So entschied ich mich dafür, alle Zellen als Matrix zu speichern, mit 1en für lebende und 0en für tote Zellen. Bei dieser Variante sind die vorhanden Funktionen von Numpy sehr hilfreich.
 \section{Durchführung}
 Das Projekt wurde in mehrere Arbeitsschritte eingeteilt. Zunächst wurde GitHub als Versionskontrollsystem eingerichtet, um das Projekt zu sichern und den Verlauf zu dokumentieren. Anschließend begann die Programmierarbeit mit dem Erstellen der Grundfunktionen, die für das Programm nötig sind. Ich entschied mich dafür, die Strukturen von Numpy zu verwenden, insbesondere also arrays und den zugehörigen Operationen zu arbeiten. Die genaue Funktionsweise ist dem Programm und insbesondere den Funktionsbeschreibungen zu entnehmen. Hier soll nur ein kleiner Einblick in die generellen Strukturen und zugehörigen Überlegungen gegeben werden.
 
@@ -36,7 +36,7 @@ Ein wichtiger Aspekt des Programms sollte die Vorgabe einiger Bedingungen vom Nu
 \subsection{GoLdataimport}
 Zur weiteren Verwendung müssen die Daten wieder als Variablen importiert werden. Dies geschieht mit der Funktion GoLdataimport, welche eine Null-Matrix der vorgegebenen Größe erzeugt. Sie wird an den in der Anfangsbedingung vorgegebenen Stellen mit 1en gefüllt. Diese stehen im weiteren Verlauf für lebende Zellen, 0en für tote/nicht vorhandene Zellen. Das nun fertige Anfangsfeld wird gemeinsam mit der Randbedingung zurückgegeben.
 \subsection{GoLStep}
-Nun war also die Vorbereitung für den Import der Benutzervorgaben abgeschlossen. Ich habe mich anschließend der Berechnung der folgenden Matrix zugewandt. Dazu muss zunächst einmal die Anzahl der Nachbarzellen jeder Zelle berechnet werden. Da ich mich, wie schon erwähnt, für die Arbeit mit Matrizen, genauer numpy arrays, entschieden hatte, bot sich hierfür eine Matrixmultiplikation (M.dot(M1)) an. Nach näher Betrachtung ergab sich, dass die Multiplikation mit Matrizen mit 1en auf der Hauptdiagonale sowie den beiden nächsten Nebendiagonalen das gewünschte Ergebnis lieferte. Auf der Linken Seite  erwirkt dies eine Addition der untereinander liegenden Werte, auf der rechten Seite eine Addition der nebeneinander liegenden. Es muss schließlich noch die Feld-Matrix abgezogen werden, damit die Zellen selbst nicht mitgerechnet werden.
+Nun war also die Vorbereitung für den Import der Benutzervorgaben abgeschlossen. Ich habe mich anschließend der Berechnung der folgenden Matrix zugewandt. Dazu muss zunächst einmal die Anzahl der Nachbarzellen jeder Zelle berechnet werden. Da ich mich, wie schon erwähnt, für die Arbeit mit Matrizen, genauer numpy arrays, entschieden hatte, bot sich hierfür eine Matrixmultiplikation (M.dot(M1)) an. Nach näher Betrachtung ergab sich, dass die Multiplikation mit Matrizen mit 1en auf der Hauptdiagonale sowie den beiden nächsten Nebendiagonalen das gewünschte Ergebnis lieferte. Auf der linken Seite  erwirkt dies eine Addition der untereinander liegenden Werte, auf der rechten Seite eine Addition der nebeneinander liegenden. Es muss schließlich noch die Feld-Matrix abgezogen werden, damit die Zellen selbst nicht mitgerechnet werden.
 
 Somit lässt sich der Verlauf für eine begrenzte Randbedingung berechnen, bei der die Außenbereiche als tot angenommen werden. 
 
@@ -50,7 +50,7 @@ Ist dies der Fall, wird eine weitere Zeile oder Spalte an der entsprechenden Sei
 \subsection{GoLplot}
 Da nun die Ausgangsmatrix sowie eine Funktion zum Berechnen der weiteren Schritte vorhanden war, habe ich mir überlegt, wie ich die Veränderungen animiert darstellen kann. Nach einer Suche auf den matplotlib Seiten stieß ich auf die Funktion FuncAnimation von matplotlib.animation. Diese erschien mir für meine Zwecke geeignet und so erarbeitete ich mir aus den Beispielen und der Dokumentation die Funktionsweise. Dies nutzte ich dann, um die Matrix animiert als imshow auszugeben. Als Parameter müssen dabei einerseits die Geschwindigkeit, Anzahl der Schritte, Wiederholungen und die Figur, in der geplottet wurde, übergeben werden. Andererseits wird eine Funktion benötigt, welche den Verlauf vorgibt. Dies gestaltete sich als schwerster Teil, da sie nur von der Schrittnummer abhängen darf und sie die Figur wieder zurückgeben muss.
 
-Zunächst einmal musste gespeichert werden, wie die letzte  Matrix aussah. Um die Geschwindigkeit bei Wiederholungen zu erhöhen, werden alle Felder in einer Liste gespeichert und abgerufen. Sollte der Wert noch nicht in der Liste vorhanden sein, wird er aus dem vorhergehenden mit der Funktion GoLStep berechnet.
+Zunächst einmal musste gespeichert werden, wie die letzte  Matrix aussah. Um die Geschwindigkeit bei Wiederholungen zu erhöhen, werden alle Felder in einer Liste gespeichert und abgerufen. Sollte der Wert noch nicht in der Liste vorhanden sein, wird er aus dem vorhergehenden mit der Funktion GoLStep berechnet. Diese Listen und einige andere Werte wurden, um sie fehlerfrei in Unterfunktionen zu nutzen, auf global gesetzt.
 
 Eine weitere Schwierigkeit trat auf, als ich die Darstellung aktualisieren wollte, wobei eine Veränderung der dargestellten Werte nicht ausreichte. Bei der unendlichen Randbedingung wird nur ein Ausschnitt der Anfangs-Größe angezeigt. Meine Lösung war schließlich die immer neue Erzeugung der imshow, nachdem der Darstellungsbereich geleert wurde.
 
@@ -59,7 +59,7 @@ Abschließend fügte ich noch eine wie i fortlaufende Variable hinzu, welche Pau
 Die ebenfalls in der Funktion GoLplot vorhandenen Sonderfunktionen werden in einem späteren Abschnitt besprochen.
 
 \subsection{GameOfLife}
-Als Abschluss fügte ich noch die Funktion GameOfLife hinzu, welche, nach der Ausführung von prepGoL oder einem manuellen Erstellen der Text-Dateien die, alle weiteren Funktionen aufruft und so den Ablauf vom GameOfLife ermöglicht.
+Als Abschluss fügte ich noch die Funktion GameOfLife hinzu, welche, nach der Ausführung von prepGoL oder einem manuellen Erstellen der Text-Dateien, alle weiteren Funktionen aufruft und so den Ablauf vom GameOfLife ermöglicht.
 
 Nach dem Datenimport werden die Variablen an GoLplot übergeben, sodass die Animation startet.
 
@@ -80,5 +80,17 @@ Für die manuelle Steuerung der Darstellung wurden vier Knöpfe erstellt, ein Pa
 Um die Animation zu unterbrechen, wurde in die Funktion, welche den Verlauf bestimmt, eine Abfrage nach einer Bool-Variable pause hinzugefügt. Sollte pause wahr sein, so wird i konstant gehalten. Der Pause-Knopf setzt pause auf wahr, der Start-Knopf wiederum auf falsch. Zu diesem Zweck handelt es sich bei pause um eine globale Variable.
 
 Außerdem wurde eine globale Variable für einen Einzelschritt in jede Richtung hinzugefügt, welche die Ausführung eines Schrittes erwirkt, hinterher aber wieder auf falsch gesetzt wird.
+
+\subsection{Bearbeiten des Feldes}
+Als weitere Funktion sollte dem Nutzer die Bearbeitung des Feldes per Maus-Klick ermöglicht werden. Dazu fügte ich einen Knopf hinzu, wobei die zugehörige Funktion nur ausgeführt wird, wenn die Variable editing auf wahr gesetzt wird, was gleichzeitig einen Stopp der Animation bewirkt.
+Innerhalb der Funktion wird zunächst der Knopf auf die entsprechende Größe gesetzt. Ich habe entdeckt, dass die Höhe des Plot unverändert bleibt, wohingegen die Breite nach dem Verhältnis von Höhe zu Breite der Matrix variiert. Anschließend wird auf Attribute des Events zugegriffen. Somit lässt sich unter Berücksichtigung der Größe der Matrix die Koordinate berechnen, auf welche geklickt wurde.
+
+An dieser Stelle wird der Wert der Matrix neu gesetzt, er errechnet sich aus dem Betrag von bisherigem Wert abzüglich eins, was aus einer Eins eine Null und umgekehrt macht.
+Anschließend wird dies als neuer Anfangszustand gewählt.
+
+\subsection{Grundeinstellungen}
+Auch während des Programmablaufes soll dem Nutzer die Veränderung der Grundeinstellungen, wozu ich die Regel und die Randbedingung zähle, möglich sein. In einem neuen Fenster erscheinen sowohl ein Schalter zur Auswahl der Randbedingung, als auch insgesamt 18 Knöpfe zum Bearbeiten der Regel. Jeder dieser Knöpfe zeigt durch seine Farbe an, ob der Wert zur Regel gehört. 
+
+Um nicht 18-mal die gleichen Funktionen zu schreiben, fasste ich sie in einer Schleife zusammen, welche die Werte von Null bis Acht durchläuft, also alle mögliche Werte für die Regel. Zur eindeutigen Namenswahl wird dies in als String geschrieben, welcher durch den entsprechenden Wert ergänzt wird, und dann mit exec ausgeführt. Vor allem dazu waren die globalen Variablen nötig, um sie trotz der exec Umgebung abrufen zu können.
 
 \end{document}
