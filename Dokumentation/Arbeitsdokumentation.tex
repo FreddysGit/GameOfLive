@@ -19,7 +19,7 @@ Das Game of Life wurde 1970 vom Mathematiker J.H. Conway entwickelt. Es ist ein 
 
 Sowohl räumlich, als auch zeitlich ist dieser diskret aufgebaut. Es wird ein zweidimensionales Feld betrachtet, welches lebende oder auch einfach besetzte und tote oder auch leere Zellen enthält. In diskreten Zeitschritten wird anhand der Nachbarzellen und des Zustandes der Zelle selbst bestimmt, ob sie auch im nächsten Zeitschritt lebend bleibt oder neu geboren wird.
 
-Die Regel, die dies bestimmt, lautet im Standartbeispiel B3/S23, das bedeutet, eine Zelle wird bei 3 lebenden Nachbarzellen geboren ('born'). Bereits lebende Zellen überleben ('survive') bei 2 oder 3 lebenden Nachbarzellen.
+Die Regel, die dies bestimmt, lautet im Standartbeispiel B3/S23, das bedeutet, eine Zelle wird bei 3 lebenden Nachbarzellen geboren ('\textbf{b}orn'). Bereits lebende Zellen überleben ('\textbf{s}urvive') bei 2 oder 3 lebenden Nachbarzellen.
 \section{Ziel des Projektes}
 Ziel des Projektes war die Programmierung des GameOfLife in Python.
 Dies bedeutet, dass an Hand einer vom Benutzer vorgegebenen Regel die Entwicklung des Feldes berechnet und dargestellt werden soll. Ferner wurden einige Sonderfunktionen programmiert, welche dem Benutzer weitere Einstellungen ermöglichen.
@@ -56,6 +56,8 @@ Eine weitere Schwierigkeit trat auf, als ich die Darstellung aktualisieren wollt
 
 Abschließend fügte ich noch eine wie i fortlaufende Variable hinzu, welche Pausen und Stopps möglich macht.
 
+Um Beispiele abspeichern zu können, fügte ich am Ende der Arbeit noch ein kwarg 
+
 Die ebenfalls in der Funktion GoLplot vorhandenen Sonderfunktionen werden in einem späteren Abschnitt besprochen.
 
 \subsection{GameOfLife}
@@ -66,13 +68,21 @@ Nach dem Datenimport werden die Variablen an GoLplot übergeben, sodass die Anim
 \section{Sonderfunktionen}
 Zusätzlich zur rein animierten Ausgabe der Matrix habe ich noch einige Sonderfunktionen programmiert. Diese sind alle in GoLplot vorhanden, sodass sie neben der Matrix z.B. als Knöpfe dargestellt werden können.
 
-Ich entschied mich, zunächst eine farbige Darstellung zu integrieren, später aber auch noch Start, Pause und Einzelschritts-Knöpfe zu erstellen. %Noch nicht mehr fertig
+Ich entschied mich, zunächst eine farbige Darstellung zu integrieren, später aber auch noch Start, Pause und Einzelschritts-Knöpfe zu erstellen. Ferner sollte eine Option zum Bearbeiten der Matrix und eine zum Erstellen einer neuen, leeren Matrix hinzugefügt werden.
 
 Für all dies benutzte ich ipython widgets.
 Anfangs versuchte ich noch, die Optionen im selben Fenster anzuzeigen. Aufgrund besserer Übersichtlichkeit verwendet das Programm nun eine Anzeige in einem neuen Fenster. Lediglich die Optionstasten zum Öffnen dieser Fenster, sowie die Start, Pause und Einzelschritt-Knöpfe sind im selben Fenster mit der Animation verblieben.
 
 \subsection{Farbwahl}
-Als erstes fügte ich eine Farbauswahl zur Funktion GoLplot hinzu, welche aus zwei Teilen besteht. Die erste Teilfunktion dient zur Farbwahl per Schalter, wobei verschiedene Farben gewählt werden können. Außerdem sind Schieberegler vorhanden, über welche die Farbe manuell eingestellt werden kann. Hierzu ist eine weitere Funktion vorhanden, welche aus der Farbwahl eine cmap erstellt und anwendet. Auch der Schalter benutzt diese Funktion, es wird je nach Farbwahl der Anteil an rot, grün und blau auf den Schiebereglern eingestellt und somit die entsprechende Funktion aufgerufen.
+Als erstes fügte ich eine Farbauswahl zur Funktion GoLplot hinzu, welche aus zwei Teilen besteht. Die erste Teilfunktion dient zur Farbwahl per Schalter, wobei verschiedene Farben gewählt werden können. Außerdem sind Schieberegler vorhanden, über welche die Farbe manuell eingestellt werden kann. Hierzu ist eine weitere Funktion vorhanden, welche aus der Farbwahl eine cmap erstellt und anwendet. Auch der Schalter benutzt diese Funktion, es wird je nach Farbwahl der Anteil an rot, grün und blau auf den Schiebereglern eingestellt und somit die entsprechende Funktion aufgerufen. Dies erkennt man in Abbildung (\ref{col})
+
+\begin{figure}[!h]
+	\begin{center}
+		\includegraphics[width=\textwidth]{ColOpt.png}
+		\caption{Aufbau der Farbwahl}
+		\label{col}
+	\end{center}
+\end{figure}
 
 \subsection{Manuelle Steuerung}
 Für die manuelle Steuerung der Darstellung wurden vier Knöpfe erstellt, ein Pause-Knopf, ein Knopf für einen Einzelschritt nach vorne, ein Knopf für einen Einzelschritt zurück und ein Start-Knopf.
@@ -89,8 +99,83 @@ An dieser Stelle wird der Wert der Matrix neu gesetzt, er errechnet sich aus dem
 Anschließend wird dies als neuer Anfangszustand gewählt.
 
 \subsection{Grundeinstellungen}
-Auch während des Programmablaufes soll dem Nutzer die Veränderung der Grundeinstellungen, wozu ich die Regel und die Randbedingung zähle, möglich sein. In einem neuen Fenster erscheinen sowohl ein Schalter zur Auswahl der Randbedingung, als auch insgesamt 18 Knöpfe zum Bearbeiten der Regel. Jeder dieser Knöpfe zeigt durch seine Farbe an, ob der Wert zur Regel gehört. 
+Auch während des Programmablaufes soll dem Nutzer die Veränderung der Grundeinstellungen, wozu ich die Regel und die Randbedingung zähle, möglich sein. In einem neuen Fenster erscheinen sowohl ein Schalter zur Auswahl der Randbedingung, als auch insgesamt 18 Knöpfe zum Bearbeiten der Regel. Jeder dieser Knöpfe zeigt durch seine Farbe an, ob der Wert zur Regel gehört. Der Aufbau ist in Abbildung (\ref{gen}) zu erkennen.
+
+\begin{figure}[!h]
+	\begin{center}
+		\includegraphics[width=\textwidth]{GenOpt.png}
+		\caption{Aufbau der Grundeinstellungen}
+		\label{blink1}
+	\end{center}
+\end{figure}
 
 Um nicht 18-mal die gleichen Funktionen zu schreiben, fasste ich sie in einer Schleife zusammen, welche die Werte von Null bis Acht durchläuft, also alle mögliche Werte für die Regel. Zur eindeutigen Namenswahl wird dies in als String geschrieben, welcher durch den entsprechenden Wert ergänzt wird, und dann mit exec ausgeführt. Vor allem dazu waren die globalen Variablen nötig, um sie trotz der exec Umgebung abrufen zu können.
+\subsection{Neues Feld}
+Abschließend kann auch als letzte der Voreinstellungen die Feldgröße verändert werden. Dazu werden Knöpfe mit den entsprechenden Zahlen sowie ein Rückgängig- und ein Bestätigungsknopf erstellt. Damit kann zunächst die x-Größe, dann die y-Größe eingestellt werden, woraus ein neues leeres Feld der entsprechenden Größe erstellt wird. In der Abbildung (\ref{NewF}) ist eine solche Eingabe zu erkennen, bei der für die x-Größe bereits 12 eingegeben wurde, nach Drücken von Enter kann die y-Größe eingestellt, um dann mit Enter das neue Feld zu erstellen.
+\begin{figure}[!h]
+	\begin{center}
+		\includegraphics[width=\textwidth]{NewF.png}
+		\caption{Neues Feld erstellen}
+		\label{NewF}
+	\end{center}
+\end{figure}
+
+\subsection{Beispiele}
+Die Funktionen des Programms lassen sich einfach an der Ausgabe erkennen. Es gibt in bestimmten Welten Figuren, die sich periodisch verändern, statisch sind oder sogar fortbewegen.
+
+Im Anhang sind einige dieser Beispiele zu finden. Sie wurden immer mit der Regel S23B3 durchgeführt. Setzt man die Startbedingung entsprechend der in den Dateien vorgegebenen Werte, entwickelt es sich entsprechend der Bilder.
+\subsubsection{Blinker}
+Der Blinker ist ein sich periodisch veränderndes Objekt, die Startbedingung der Animation ist unter dem Dateinamen \textit{GameOfLifeBlinker.dat} zu finden. Die Grafiken (\ref{blink1}) und (\ref{blink2}) wurde aufgenommen bei einer Feldgröße von 9*9 und einer periodischen Randbedingung.
+
+Zu erkennen sind zwei solcher Blinker in beiden Zuständen.
+\begin{figure}[p]
+	\begin{center}
+		\includegraphics[width=\textwidth]{Blinker1.png}
+		\caption{Zwei Blinker bei periodischer Randbedingung - Zustand 1}
+		\label{blink1}
+	\end{center}
+\end{figure}
+\begin{figure}[p]
+	\begin{center}
+		\includegraphics[width=\textwidth]{Blinker2.png}
+		\caption{Zwei Blinker bei periodischer Randbedingung - Zustand 2}
+		\label{blink2}
+	\end{center}
+\end{figure}
+
+\subsubsection{Gleiter}
+Am Beispiel des Gleiters ist die unendliche Randbedingung besonders deutlich zu erkennen. Zunächst ist in Abbildung (\ref{gleit1}) die Anfangsbedingung zu erkennen. Das statische Quadrat in der oberen linken Ecke verbleibt auf seinem Platz, wohingegen der Gleiter sich nach unten bewegt, was eine Erweiterung des Feldes bewirkt. Dies ist in Abbildung (\ref{gleit2}) zu erkennen. Es ist unter dem Namen \textit{GameOfLifeGleiter.dat} zu finden.
+
+\begin{figure}[p]
+	\begin{center}
+		\includegraphics[width=\textwidth]{Gleiter1.png}
+		\caption{Anfangsbedingung der Gleiter}
+		\label{gleit1}
+	\end{center}
+\end{figure}
+\begin{figure}[p]
+	\begin{center}
+		\includegraphics[width=\textwidth]{Gleiter2.png}
+		\caption{Felderweiterung durch den Gleiter}
+		\label{gleit2}
+	\end{center}
+\end{figure}
+
+Im Gegensatz dazu verschwindet der Gleiter bei einer endlichen Randbedingung, da er sich nicht weiter bewegen kann. Dieses Beispiel hat die gleiche Anfangsbedingung wie das vorhergehende, ist also ebenfalls unter dem Namen \textit{GameOfLifeGleiter.dat} gespeichert. In Grafik (\ref{gleit3}) erkennt man, wie der Gleiter zu verschwinden beginnt. Ab dem zwölften Schritt wird er zum statischen Quadrat, was in Grafik (\ref{gleit4}) zu erkennen ist.
+
+\begin{figure}[p]
+	\begin{center}
+		\includegraphics[width=\textwidth]{Gleiter3.png}
+		\caption{Gleiter beginnt zu verschwinden}
+		\label{gleit3}
+	\end{center}
+\end{figure}
+\begin{figure}[p]
+	\begin{center}
+		\includegraphics[width=\textwidth]{Gleiter4.png}
+		\caption{Gleiter wurde zum Quadrat}
+		\label{gleit4}
+	\end{center}
+\end{figure}
 
 \end{document}
