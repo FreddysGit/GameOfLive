@@ -30,7 +30,7 @@ Nun blieb nur noch zu klären, wie ich das Feld mit den Zellen darstellen sollte
 \section{Durchführung}
 Das Projekt wurde in mehrere Arbeitsschritte eingeteilt. Zunächst wurde GitHub als Versionskontrollsystem eingerichtet, um das Projekt zu sichern und den Verlauf zu dokumentieren. Anschließend begann die Programmierarbeit mit dem Erstellen der Grundfunktionen, die für das Programm nötig sind. Ich entschied mich dafür, die Strukturen von Numpy zu verwenden, insbesondere also arrays und den zugehörigen Operationen zu arbeiten. Die genaue Funktionsweise ist dem Programm und insbesondere den Funktionsbeschreibungen zu entnehmen. Hier soll nur ein kleiner Einblick in die generellen Strukturen und zugehörigen Überlegungen gegeben werden.
 
-Die folgende Reihenfolge gibt vor allem einen logisch sortierten Überblick, bei der Programmierung selbst wurden Programmfehler teilweise erst später behoben, während schon mit anderen Funktionen begonnen wurde oder Einstellungen wie die Randbedingung erst später ins Programm ergänzt.
+Die folgende Reihenfolge gibt vor allem einen logisch sortierten Überblick. Bei der Programmierung selbst wurden Programmfehler teilweise erst später behoben, während schon mit anderen Funktionen begonnen wurde, oder Einstellungen wie die Randbedingung erst später ins Programm ergänzt.
 \subsection{prepGoL}
 Ein wichtiger Aspekt des Programms sollte die Vorgabe einiger Bedingungen vom Nutzer sein. Dazu zählen der Regelstring, welcher den Verlauf bestimmt, die Randbedingung, Systemgröße, sowie die Anfangsbedingung. Zu diesem Zweck schrieb ich die Funktion prepGoL. Diese verlangt genau diese Eigenschaften als Argumente, welche in verschiedenen Formaten vorgegeben werden. Die erste Idee war, alle Argumente in eine Text-Datei zu schreiben. Dies wäre allerdings beim Datenimport deutlich komplizierter gewesen, da die verschiedenen Argumente verschiedene Variablen-Typen benötigen. Die Funktion prepGoL erstellt also mehrere Text-Dateien, welche noch einmal verändert werden können. Jede Datei enthält ein Argument. Die Dateien werden zum Ausführen der Funktion GameOfLife in genau der vorgegeben Form benötigt.
 \subsection{GoLdataimport}
@@ -55,8 +55,6 @@ Zunächst einmal musste gespeichert werden, wie die letzte  Matrix aussah. Um di
 Eine weitere Schwierigkeit trat auf, als ich die Darstellung aktualisieren wollte, wobei eine Veränderung der dargestellten Werte nicht ausreichte. Bei der unendlichen Randbedingung wird nur ein Ausschnitt der Anfangs-Größe angezeigt. Meine Lösung war schließlich die immer neue Erzeugung der imshow, nachdem der Darstellungsbereich geleert wurde.
 
 Abschließend fügte ich noch eine wie i fortlaufende Variable hinzu, welche Pausen und Stopps möglich macht.
-
-Um Beispiele abspeichern zu können, fügte ich am Ende der Arbeit noch ein kwarg 
 
 Die ebenfalls in der Funktion GoLplot vorhandenen Sonderfunktionen werden in einem späteren Abschnitt besprochen.
 
