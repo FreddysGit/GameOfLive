@@ -1,0 +1,7 @@
+#Anfangsbedingungen; Positionen der einzelnen besetzten Zellen untereinander: xpos ypos
+3 3 #Blinker 1
+4 3
+5 3
+0 0 #Blinker 2
+8 0
+7 0

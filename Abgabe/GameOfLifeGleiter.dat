@@ -1,0 +1,11 @@
+#Anfangsbedingungen; Positionen der einzelnen besetzten Zellen untereinander: xpos ypos
+5 3 #Gleiter
+6 4 
+5 5
+6 5
+4 5
+1 1 #Quadrat
+1 2
+2 1
+2 2
+
